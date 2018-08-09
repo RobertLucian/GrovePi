@@ -72,6 +72,11 @@ address = 0x04
 i2c = I2C('/dev/i2c-' + str(bus_port))
 max_recv_size = 10
 
+# Earliest version of the firmware to work with
+works_with_firmware = [
+	"1.3.0"
+]
+
 # This allows us to be more specific about which commands contain unused bytes
 unused = 0
 retries = 10
@@ -645,3 +650,10 @@ def flowRead():
 		return [data_back[0],data_back[2] * 256 + data_back[1]]
 	else:
 		return [-1,-1]
+
+def main():
+	print("library supports this fw versions: " +
+			" ".join('{}'.format(k[1]) for k in enumerate(works_with_firmware)))
+
+if __name__ == "__main__":
+	main()
